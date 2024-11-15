@@ -1,65 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Converter</title>
+    <title>Document</title>
     <style>
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        .outerdiv{
-            background-color: rgb(178, 248, 225);
-            margin: 200px auto;
-            text-align: center;
-            border: 5px solid green;
-            border-radius: 15px;
-            padding: 100px;
-            width: 800px;
-            }
-        .innerdiv{
-            line-height: 150px;
-            font-size: larger;
+        .temp{
             font-weight: bold;
-            color: rgb(5, 81, 81);
-            display: inline-block;
-            margin-left: 30px;
+            color: white;
+            margin-left: 20px;
+        }
+        #cont{
+            display: flex;
+            align-items: center;
+            height: 94vh;
         }
         h1{
-            color: rgb(17, 88, 33);
-            text-decoration: underline;
+          text-align: center;
+          font-size: 4vh;
+          margin-top: 2vh;
+          background-color: blue;
+          color: white;
         }
-        .inp{
-            background-color: rgb(49, 206, 154);
-            width: 130px;
-            font-weight: bold;
-            margin-left: 3px;
+        #form{
+            border: 10px solid rgb(15, 15, 197);
+            border-radius: 10px;
+            background-color: blue;
+            width: 100vw;
+            text-align: center;
+            padding: 80px;
         }
     </style>
 </head>
+
 <body>
-    <div class="outerdiv">
-        <h1>Temperature Temp Converter</h1>
-        <div class="innerdiv">
-            <label for="cel">Celsius</label>
-            <input type="number" name="" id="cel" value="0" class="inp">
-        </div>
-        <div class="innerdiv">
-            <label for="feh">Fahrenheit</label>
-            <input type="number" name="" id="fah" value="32" class="inp">
-        </div>
+    <h1>Temperature Converter</h1>
+    <div id="cont">
+        <form action="" id="form">
+            <label for="fah" class="temp">Fahrenheit</label>
+            <input type="number" name="" id="fah"> 
+            <label for="cel" class="temp">Celsius</label>
+            <input type="number" name="" id="cel">
+        </form>
+
     </div>
     <script>
-        let cel=document.getElementById('cel');
+        function convert(val){
+            if(val%1===0){
+                return val;
+            }
+            else{
+                return Number(val.toFixed(4));
+            }
+        }
         let fah=document.getElementById('fah');
-        cel.addEventListener('input',function (){
-            fah.value=Number(((this.value)*9/5+32).toFixed(4));
+        let cel=document.getElementById('cel');
+        fah.addEventListener('input',function(){
+            let val=((this.value)-32)*5/9;
+            cel.value=convert(val);   
         });
-        fah.addEventListener('input',function (){
-            cel.value=Number(((this.value-32)*5/9).toFixed(4));
+        cel.addEventListener('input', function(){
+            let val=(this.value)*9/5+32;
+            fah.value=convert(val);
         });
+
     </script>
 </body>
+
 </html>
